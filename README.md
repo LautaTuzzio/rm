@@ -1027,65 +1027,7 @@ export function animateLoadingScreen(progress, percentage) {
 | Animaciones entrecortadas | Demasiadas animaciones simultáneas | Reducir la complejidad de las animaciones o desactivarlas en dispositivos de bajo rendimiento. |
 | Problemas de visualización en móviles | Diseño no responsivo | Revisar los media queries y asegurar que todos los elementos se adaptan correctamente a diferentes tamaños de pantalla. |
 
-## 9. Consideraciones de Escalabilidad
-
-### 9.1 Escalabilidad del Servidor
-
-#### Arquitectura Actual
-Actualmente, el servidor utiliza una arquitectura monolítica con Socket.io para la comunicación en tiempo real. Esto funciona bien para un número moderado de usuarios, pero puede presentar limitaciones al escalar.
-
-#### Recomendaciones para Alta Carga
-
-1. **Implementación de Microservicios**:
-   - Separar la lógica de salas, juego y autenticación en servicios independientes.
-   - Utilizar un sistema de mensajería como RabbitMQ o Kafka para la comunicación entre servicios.
-
-2. **Balanceo de Carga**:
-   - Implementar múltiples instancias del servidor detrás de un balanceador de carga.
-   - Configurar Socket.io con Redis Adapter para permitir comunicación entre instancias.
-
-3. **Base de Datos**:
-   - Migrar de almacenamiento en memoria a una base de datos como MongoDB para persistencia.
-   - Implementar caché con Redis para datos frecuentemente accedidos.
-
-### 9.2 Optimización del Cliente
-
-1. **Carga Progresiva**:
-   - Implementar lazy loading para cargar solo los recursos necesarios según la vista actual.
-   - Utilizar code splitting para reducir el tamaño del bundle inicial.
-
-2. **Caché Inteligente**:
-   - Utilizar Service Workers para cachear recursos estáticos y respuestas de API.
-   - Implementar una estrategia de caché que priorice los Pokémon más frecuentemente utilizados.
-
-3. **Optimización de Recursos**:
-   - Comprimir imágenes y utilizar formatos modernos como WebP.
-   - Implementar carga adaptativa de recursos según la conexión del usuario.
-
-### 9.3 Monitoreo y Análisis
-
-1. **Implementación de Telemetría**:
-   - Integrar herramientas como New Relic o Datadog para monitoreo en tiempo real.
-   - Establecer alertas para métricas críticas como latencia y uso de memoria.
-
-2. **Análisis de Uso**:
-   - Recopilar datos anónimos sobre patrones de juego para optimizar la experiencia.
-   - Identificar cuellos de botella y oportunidades de mejora basadas en datos reales.
-
-3. **Pruebas de Carga**:
-   - Realizar pruebas de carga periódicas para identificar límites del sistema.
-   - Simular escenarios de tráfico pico para asegurar la estabilidad.
-
-### 9.4 Plan de Escalado Gradual
-
-| Etapa | Número de Usuarios | Acciones Recomendadas |
-|-------|---------------------|----------------------|
-| 1 | < 1,000 concurrentes | Arquitectura actual con optimizaciones básicas. |
-| 2 | 1,000 - 5,000 concurrentes | Implementar balanceo de carga y Redis para sesión compartida. |
-| 3 | 5,000 - 20,000 concurrentes | Migrar a microservicios y base de datos escalable. |
-| 4 | > 20,000 concurrentes | Considerar arquitectura serverless y CDN global. |
-
-## 10. Recursos Adicionales
+## 9. Recursos Adicionales
 
 - **Documentación de PokéAPI**: [https://pokeapi.co/docs/v2](https://pokeapi.co/docs/v2)
 - **Socket.io (para multijugador)**: [https://socket.io/docs/](https://socket.io/docs/)
@@ -1093,6 +1035,3 @@ Actualmente, el servidor utiliza una arquitectura monolítica con Socket.io para
 - **Redis Adapter para Socket.io**: [https://socket.io/docs/v4/redis-adapter/](https://socket.io/docs/v4/redis-adapter/)
 - **Herramientas de Monitoreo**: [https://newrelic.com/](https://newrelic.com/) y [https://www.datadoghq.com/](https://www.datadoghq.com/)
 
----
-
-Este manual ha sido creado para ayudar a los desarrolladores a entender y extender el juego "Adivina el Pokémon". Si tienes preguntas adicionales o encuentras problemas, no dudes en contactar al equipo de desarrollo.
